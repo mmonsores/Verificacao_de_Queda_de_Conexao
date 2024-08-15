@@ -1,0 +1,46 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class VerificaQuedaConexao {
+
+    public static void main(String[] args) {
+        // Cria um BufferedReader para ler a entrada do usuário
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        try {
+            // Lê a linha de entrada
+            String entrada = br.readLine();
+            
+            // Verifica se há queda de conexão
+            String resultado = verificarQuedaConexao(entrada);
+            
+            // Exibe o resultado
+            System.out.println(resultado);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Verifica se há queda de conexão na lista de velocidades fornecida.
+     * 
+     * @param entrada A string contendo as velocidades separadas por vírgula
+     * @return "Queda de Conexao" se houver pelo menos uma velocidade igual a 0, "Sem Quedas" caso contrário
+     */
+    public static String verificarQuedaConexao(String entrada) {
+        // Divide a string de entrada em um array de strings
+        String[] velocidades = entrada.split(",");
+        
+        // Itera sobre o array de strings
+        for (String velocidade : velocidades) {
+            // Remove espaços em branco e converte para inteiro
+            if (Integer.parseInt(velocidade.trim()) == 0) {
+                return "Queda de Conexao";
+            }
+        }
+        
+        // Se nenhum valor for 0, retorna "Sem Quedas"
+        return "Sem Quedas";
+    }
+}
